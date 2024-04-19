@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLE Beacon Data</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js" integrity="sha384-fM8gIF3S4fU8G/RthXqRMG92qQeYbPr1FqFQc52E2GXdsVXkeNqkWre4NYrcl2Iz" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>BLE Beacon Data</h1>
+    <div id="beaconData"></div>
+
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('beacon_data', function(data) {
+            document.getElementById('beaconData').innerHTML = 'Beacon ID: ' + data.id + '<br>Signal Strength: ' + data.rssi + ' dBm';
+        });
+    </script>
+</body>
+</html>
